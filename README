@@ -1,0 +1,8 @@
+Practica de rails,
+
+Primera aplicación real de rails, es  un simple sistema de tickets con autentificación de usuarios
+Búsqueda de tikets por tags y por titulo, implementada gema will_paginate y acts-as-taggable-on
+
+Ahora los usuarios registrados pueden comentar los tickets
+
+Ahora el formulario de ocntacto, envia notificacion tanto al creador como a los admins

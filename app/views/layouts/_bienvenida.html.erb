@@ -1,0 +1,19 @@
+<div class="caja">
+  <h1> Bienvenido a mi sistema de tickets </h1>
+  <% if current_user %>
+    <p>
+      proximamente mas cosas de momento puedes ver los tickets actuales <%= link_to "Ver tickets", ver_todos_path %> 
+      o buscar un ticket <%= link_to "Buscador de tickets", buscar_ticket_url %>
+    <p> 
+  <% else %>
+    <p>
+      Esta es al pagina principal, aqui puedes registrarte identificarte o mirar los tickets,
+      No puedes crear ningun ticket si no estas registrado :)  
+      Por favor <%= link_to 'identificate', log_in_path %> o <%= link_to 'Registrate', sign_up_path %>
+    </p>
+    <p>
+      Ver los tickets actuales <%= link_to "Ver tickets", ver_todos_path %>
+      - Buscar un ticket <%= link_to "Buscador de tickets", buscar_ticket_url %>
+    </p>
+  <% end %>  
+</div> 

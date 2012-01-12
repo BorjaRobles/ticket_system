@@ -1,0 +1,9 @@
+<h1>Edicion del ticket</h1>
+<%= form_for [@user,@ticket,@comentario] do |f| %>
+  <%= render :partial => 'shared/error_list', :locals => {:error_list =>@comentario} if @comentario.errors.any? %>  
+  <p>
+    <%= f.label 'Texto' %><br/>
+    <%= f.text_area :texto %>
+  </p>
+  <p class="button"><%= f.submit "Enviar"%></p>
+<% end %>

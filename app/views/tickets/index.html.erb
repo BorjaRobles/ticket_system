@@ -1,0 +1,50 @@
+<%= render 'filtro'%>
+
+<% @todos.each do |cadauno| %>
+  <%= div_for cadauno do %>
+    <td> #ID - <%= link_to cadauno.id, mostrar_ticket_path(cadauno.id) %> </td> <br>
+    <td> <%= image_tag (cadauno.user.foto.url(:small)) %> </td></br>
+    <td> Usuario: <%= cadauno.user.name %> </td><br>
+    <td> Los tags - <%= cadauno.tag_list %> </td><br>
+    <td> <%= cadauno.titulo %> </td><br>
+    <td> <%= cadauno.contenido %> </td><br>
+    <td> Estado: <%= ver_estado(cadauno) %></td><br><br>
+    <% if session[:user_id] %>          
+      <% if current_user.soporte == true %>      
+        <%= link_to "ASIGNAR", asignar_estado_path(cadauno.id,Ticket::ASIGNADO)%> 
+        - <%= link_to "CERRAR", asignar_estado_path(cadauno.id,Ticket::CERRADO)%>
+      <% end %>
+    <% end %>     
+    
+    <% cadauno.comments.each do |comentario| %>
+      <strong><%= comentario.autor %></strong> Comento el <%= comentario.created_at %><br>
+      <%= comentario.texto %><br>
+    <% end %>
+    
+    <% if @user %>
+    <br>
+      <%= form_for [@user,cadauno,@coment] do |f| %>
+        <div class="round" name="newboxes" id="<%=cadauno.id%>">
+          <p>
+            <%= f.label 'Comentario' %><br />
+            <%= f.text_field :texto %>
+          </p>
+          <p class="button"><%= f.submit "Enviar"%></p>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %><br><br>
+<% end %>
+
+<%= will_paginate @todos %></br>  
+
+<% if session[:user_id] %>
+  <p> Crear un <%= link_to "Ticket nuevo", new_user_ticket_path(session[:user_id]) %>  </p></br>
+  <p> Buscar un ticket <%= link_to "Buscador de tickets", buscar_ticket_url %></p></br>
+<% end %>
+
+<% if @todos.size == 0 %>
+  <em> No se han encontrado tickets </em>
+<% end %>
+
+

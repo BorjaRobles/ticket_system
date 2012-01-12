@@ -1,0 +1,32 @@
+<%= form_for @user, :html => { :multipart => true } do |f| %>
+  <%= render :partial => 'shared/error_list', :locals => {:error_list =>@user} if @user.errors.any?%>
+  <p>
+    <%= f.label 'Nombre de Usuario' %><br />
+    <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label 'Tu nombre' %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label 'Funcion' %><br />
+    <%= f.select :soporte,[['usuario standar', false],['suport team', true]] %>
+  </p>
+  <p>
+    <%= f.label 'Email' %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label 'Password' %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label 'Confirmacion del password' %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p>
+    <%= f.label 'añadir avatar' %><br />
+    <%= f.file_field :foto %>
+  </p>
+  <p class="button"><%= f.submit "Enviar"%></p>
+<% end %>

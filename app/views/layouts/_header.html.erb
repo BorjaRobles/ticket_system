@@ -1,0 +1,21 @@
+<header>
+  <nav class="round">
+    <ul>
+      <% if current_user %>
+        <li> <%= link_to current_user.username, current_user %></li>
+        <li><%= link_to "Inicio", root_path %></li>
+        <li><%= link_to "Contacto", contact_form_path %> </li>
+        <li><%= link_to "Salir", log_out_path %></li>
+      <% else %>
+        <li><%= link_to "Inicio", root_path %></li>
+        <li><%= link_to "Contacto", contact_form_path %> </li>
+        <li><%= link_to "Registrate", sign_up_path %></li>
+        <li><%= link_to "Identificate", log_in_path %></li>
+      <% end %>
+    </ul>
+  </nav>
+</header>
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>

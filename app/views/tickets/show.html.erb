@@ -1,0 +1,10 @@
+<h1> Ticket </h1>
+<p> Numero de identificador de ticket #<%= @elticket.id %></p> </br>
+<h1> <%= @elticket.titulo %> </h1> </br>
+Creador: <%= @elticket.user.name %><br>
+Listado de tags: <%= @elticket.tag_list %><br>
+Estado: <%= ver_estado(@elticket)%><br>
+<p>Contenido: <%= @elticket.contenido %> </p> </br>
+<%= link_to "Listado de tickets" , ver_todos_path %>
+
+
