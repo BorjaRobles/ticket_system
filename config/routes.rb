@@ -1,9 +1,10 @@
 TicketSistem::Application.routes.draw do  
-    
+  
+  #Esta ruta no se puede modificar con un member ??  
   get "/tickets/:ticket_id/:estado" => "tickets#index", :as => "asignar_estado" 
   
   resources :sessions, :comments
-    
+  
   resources :users do 
     resources :tickets do 
       resources :comments  

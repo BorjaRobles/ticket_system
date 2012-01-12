@@ -1,29 +1,32 @@
-<h1>
-  <%= image_tag current_user.foto.url(:small) %>
-  <br> <%= 'Bienvenido  ' + current_user.name %>
-  <br> <%= 'Nombre de usuario  ' + current_user.username %>
-  <br> <%= 'Email ' + current_user.email %>
-  <% if current_user.soporte == true %>
-    <br>Eres del equipo soporte de tickets<br>
-    <% if @asignados.empty? %>
-      No tienes tickets asignados
-    <% else %>
-      <% @asignados.each do |asignado |%>
-        Ticket id: <%= asignado.id %><br>
-        Titulo: <%= asignado.titulo %><br>
-        Ver ticket <%= link_to 'ir al ticket', ticket_path(asignado.id) %><br><br>
-      <% end %>
-    <% end %>
+<p>
+<%= image_tag current_user.foto.url(:small) %>
+<br> <%= 'Bienvenido  ' + current_user.name %>
+<br> <%= 'Nombre de usuario  ' + current_user.username %>
+<br> <%= 'Email ' + current_user.email %>
+<% if current_user.soporte == true %>
+  <br>Eres del equipo soporte de tickets<br>
+  <% if @asignados.empty? %>
+    No tienes tickets asignados
   <% else %>
-    <br><br> Usuario standar <br>
-    <% current_user.tickets.each do |ticket| %>
-      Ticket creado - <strong> <%= ticket.titulo %> </strong>, 
-      <p>
-        - <%= link_to 'Ver', ticket_path(ticket)%> <br>
-        - <%= link_to 'Editar', edit_user_ticket_path(ticket)%> <br>
-        - <%= link_to "Eliminar", [@user, ticket], :method => :delete %></br>
-      </p>
+    <br><br>
+    <strong>Tickets Asignados</strong>
+    <% @asignados.each do |asignado |%>      
+      Ticket id: <%= asignado.id %><br>
+      Titulo: <%= asignado.titulo %><br>
+      Ver ticket <%= link_to 'ir al ticket', ticket_path(asignado.id) %><br><br>
     <% end %>
-  <% end %><br><br>
-</h1>
-<%= link_to 'Editar', edit_user_path(current_user) %>
+  <% end %>    
+<% else %>
+  <br><br> Usuario standar <br>
+<% end %><br><br>
+
+<strong> Tickets Creados </strong>
+<% current_user.tickets.each do |ticket| %>
+  Ticket creado - <strong> <%= ticket.titulo %> </strong>,  
+  - <%= link_to 'Ver', ticket_path(ticket)%> <br>
+  - <%= link_to 'Editar', edit_user_ticket_path(ticket)%> <br>
+  - <%= link_to "Eliminar", [@user, ticket], :method => :delete %>
+<% end %>
+<br><br>
+<%= link_to 'Modificar Datos', edit_user_path(current_user) %>
+</p>
