@@ -11,7 +11,7 @@
       <% @asignados.each do |asignado |%>
         Ticket id: <%= asignado.id %><br>
         Titulo: <%= asignado.titulo %><br>
-        Ver ticket <%= link_to 'ir al ticket', mostrar_ticket_path(asignado.id) %><br><br>
+        Ver ticket <%= link_to 'ir al ticket', ticket_path(asignado.id) %><br><br>
       <% end %>
     <% end %>
   <% else %>

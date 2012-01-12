@@ -36,7 +36,7 @@ class TicketsController < ApplicationController
       if params[:estado]
         @ticket = Ticket.find(params[:ticket_id])
         @ticket.asignar_estado(params[:estado], @user.name)
-        redirect_to ver_todos_path
+        redirect_to tickets_path
       end
     end
   end
@@ -46,7 +46,7 @@ class TicketsController < ApplicationController
         @elticket = Ticket.find(params[:id])
         #redirect_to ver_todos_url if @elticket.nil?
     else
-      redirect_to ver_todos_url, :alert=>'Registrate antes!!'
+      redirect_to tickets_url, :alert=>'Registrate antes!!'
     end
   end
 
@@ -63,7 +63,7 @@ class TicketsController < ApplicationController
   def create
     @ticket = @user.tickets.new(params[:ticket])
     if @ticket.save
-      redirect_to mostrar_ticket_path(@ticket.id), :notice => "Ticket creado correctamente"
+      redirect_to ticket_path(@ticket.id), :notice => "Ticket creado correctamente"
     else
       render "new"
     end
@@ -76,7 +76,7 @@ class TicketsController < ApplicationController
   def update
     @ticket = @user.tickets.find(params[:id])
     if @ticket.update_attributes(params[:ticket])
-      redirect_to mostrar_ticket_path(@ticket.id), :notice => "Ticket Actualizado correctamente"
+      redirect_to ticket_path(@ticket.id), :notice => "Ticket Actualizado correctamente"
     else
       render "edit"
     end
@@ -87,9 +87,9 @@ class TicketsController < ApplicationController
     @ticket = @user.tickets.find(params[:id])
     if @ticket
       @ticket.destroy
-      redirect_to ver_todos_url, :notice => "Ticket eliminado"
+      redirect_to tickets_url, :notice => "Ticket eliminado"
     else
-      redirect_to ver_todos_url, :notice => "No tienes permiso para eliminar el ticket"
+      redirect_to tickets_url, :notice => "No tienes permiso para eliminar el ticket"
     end  
   end
 

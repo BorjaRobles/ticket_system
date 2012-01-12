@@ -2,7 +2,7 @@
 
 <% @todos.each do |cadauno| %>
   <%= div_for cadauno do %>
-    <td> #ID - <%= link_to cadauno.id, mostrar_ticket_path(cadauno.id) %> </td> <br>
+    <td> #ID - <%= link_to cadauno.id, ticket_path(cadauno.id) %> </td> <br>
     <td> <%= image_tag (cadauno.user.foto.url(:small)) %> </td></br>
     <td> Usuario: <%= cadauno.user.name %> </td><br>
     <td> Los tags - <%= cadauno.tag_list %> </td><br>
@@ -40,7 +40,7 @@
 
 <% if session[:user_id] %>
   <p> Crear un <%= link_to "Ticket nuevo", new_user_ticket_path(session[:user_id]) %>  </p></br>
-  <p> Buscar un ticket <%= link_to "Buscador de tickets", buscar_ticket_url %></p></br>
+  <p> Buscar un ticket <%= link_to "Buscador de tickets", buscador_tickets_url %></p></br>
 <% end %>
 
 <% if @todos.size == 0 %>

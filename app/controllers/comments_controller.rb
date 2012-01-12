@@ -51,7 +51,7 @@ class CommentsController < ApplicationController
     if @user.id == session[:user_id]
       @comentario = Comment.find_by_ticket_id(params[:ticket_id])
       if @comentario.update_attributes(params[:comment])
-        redirect_to mostrar_ticket_path(@user.tickets.id), :notice => "Comentario Actualizado correctamente"
+        redirect_to ticket_path(@user.tickets.id), :notice => "Comentario Actualizado correctamente"
       else
         render "edit"
       end

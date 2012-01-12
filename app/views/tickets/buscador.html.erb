@@ -3,7 +3,7 @@
     <p> No se ha encontrado ninguna coincidencia </p>
   <% else %>
     <% @encontrado.each do |cadauno| %>
-      <td> #ID - <%= link_to cadauno.id, mostrar_ticket_path(cadauno.id) %> </td> <br>
+      <td> #ID - <%= link_to cadauno.id, ticket_path(cadauno.id) %> </td> <br>
       <td> <%= image_tag cadauno.user.foto.url(:small) %> </td></br>
       <td> Usuario: <%= cadauno.user.name %> </td><br>
       <td> Los tags - <%= cadauno.tag_list %> </td><br>
