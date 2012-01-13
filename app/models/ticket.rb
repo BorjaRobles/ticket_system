@@ -6,11 +6,10 @@ class Ticket < ActiveRecord::Base
   validates :titulo,     :presence => true
   validates :contenido,  :presence => true,
                           :length => {:minimum => 5, :maximum =>200}
-  #variables constantes
   NUEVO = 0
   ASIGNADO = 1
   CERRADO = 2
-  TODOS = '7' #estos los teng que poner asi entre '' porque sino no me funciona, los interpreta mal.
+  TODOS = '7'
   FILTRO = '3'
                           
   def self.buscar_titulo(str)
@@ -25,15 +24,4 @@ class Ticket < ActiveRecord::Base
     self.owner = name
     self.save
   end
- 
-  #este metodo ponerlo dentro de un helper 
-  #def ver_estado
-  #  if estado == NUEVO
-   #   "Nuevo"
-  #  elsif estado == ASIGNADO
-  #    "asignado a #{owner}" 
-  #  elsif estado == CERRADO
-  #    "CERRADO"
-  #  end
-  #end              
 end

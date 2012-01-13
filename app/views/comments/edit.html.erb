@@ -1,6 +1,6 @@
 <h1>Edicion del ticket</h1>
-<%= form_for [@user,@ticket,@comentario] do |f| %>
-  <%= render :partial => 'shared/error_list', :locals => {:error_list =>@comentario} if @comentario.errors.any? %>  
+<%= form_for [@user,@ticket,@comment] do |f| %>
+  <%= render :partial => 'shared/error_list', :locals => {:error_list =>@comentario}%>  
   <p>
     <%= f.label 'Texto' %><br/>
     <%= f.text_area :texto %>

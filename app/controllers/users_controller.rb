@@ -1,25 +1,19 @@
 class UsersController < ApplicationController
+  before_filter :login_required, :only=>[:show, :edit, :update]
+  before_filter :get_user, :only=>[:show, :edit, :update]
   def new
     @titulo = 'Registrate'
     @user = User.new
   end
 
   def show
-    #session[:user_id]
-    @user = User.find(params[:id])
-    if @user
-      @asignados = Ticket.where(:owner => @user.name)
-    else
-      redirect_to new_session_url, :notice => "IDENTIFICATE ANTES"
-    end
+    @asignados = Ticket.where(:owner => @user.name)
   end
     
   def edit
-    @user = User.find_by_id(session[:user_id])
   end
   
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       redirect_to @user, :notice => 'Has actualizado tus datos !!!'
     else

@@ -1,5 +1,5 @@
-<%= form_for [@user,@ticket,@coment] do |f| %>
-  <%= render :partial => 'shared/error_list', :locals => {:error_list =>@coment} if @coment.errors.any?%>
+<%= form_for [@user,@ticket,@comment] do |f| %>
+  <%= render :partial => 'shared/error_list', :locals => {:error_list =>@comment} if @comment.errors.any? %>
   <p>
     <%= f.label 'Comentario' %><br/>
     <%= f.text_area :texto %>

@@ -10,20 +10,19 @@
       <td> <%= ticket.titulo %> </td><br>
       <td> <%= ticket.contenido %> </td><br>
       <td> Estado: <%= ver_estado(ticket) %></td><br>
-    
-      <% if session[:user_id] == ticket.user_id %>
-        <%= link_to "ASIGNAR", asignar_estado_ticket_path(ticket.id,Ticket::ASIGNADO)%> 
-        - <%= link_to "CERRAR", asignar_estado_ticket_path(ticket.id,Ticket::CERRADO)%><br>
-        <td> <%= link_to "Comentar", new_user_ticket_comment_path(session[:user_id], ticket.id) %> </td><br>
+      <%= link_to "ASIGNAR", asignar_estado_ticket_path(ticket.id,Ticket::ASIGNADO)%> 
+      - <%= link_to "CERRAR", asignar_estado_ticket_path(ticket.id,Ticket::CERRADO)%><br>
+      <td> <%= link_to "Comentar", new_user_ticket_comment_path(session[:user_id], ticket.id) %> </td><br>    
+      <% if session[:user_id] == ticket.user_id %>        
         <td> <%= link_to "Actualizar", edit_user_ticket_path(@user, ticket)%>
         <td> <%= link_to "Eliminar", [@user, ticket], :method => :delete %></td>
       <% end %>
     
       <% if ticket.comments.count > 0 %>
-        <% ticket.comments.each do |comentario| %>
-          <% usuario = User.find_by_id(comentario.user_id) %>
-          <%= comentario.autor %> Comento el <%= comentario.created_at %><br>
-          <%= comentario.texto %><br>
+        <% ticket.comments.each do |comment| %>
+          <% usuario = User.find_by_id(comment.user_id) %>
+          <%= comment.autor %> Comento el <%= comment.created_at %><br>
+          <%= comment.texto %><br>
         <% end %>
       <% end %><br><br>
     <% end %> 

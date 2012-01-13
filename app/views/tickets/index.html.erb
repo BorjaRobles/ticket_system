@@ -16,14 +16,14 @@
       <% end %>
     <% end %>     
     
-    <% ticket.comments.each do |comentario| %>
-      <strong><%= comentario.autor %></strong> Comento el <%= comentario.created_at %><br>
-      <%= comentario.texto %><br>
+    <% ticket.comments.each do |comment| %>
+      <strong><%= comment.autor %></strong> Comento el <%= comment.created_at %><br>
+      <%= comment.texto %><br>
     <% end %>
     
-    <% if @user %>
+    <% if current_user %>
     <br>
-      <%= form_for [@user,ticket,@coment] do |f| %>
+      <%= form_for [current_user,ticket,@comment] do |f| %>
         <div class="round" name="newboxes" id="<%=ticket.id%>">
           <p>
             <%= f.label 'Comentario' %><br />
@@ -36,7 +36,7 @@
   <% end %><br><br>
 <% end %>
 
-<%= will_paginate @todos %></br>  
+<%= will_paginate @tickets %></br>  
 
 <% if session[:user_id] %>
   <p> Crear un <%= link_to "Ticket nuevo", new_user_ticket_path(session[:user_id]) %>  </p></br>

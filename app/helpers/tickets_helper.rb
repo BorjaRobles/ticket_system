@@ -1,14 +1,10 @@
 module TicketsHelper
-  NUEVO = 0
-  ASIGNADO = 1
-  CERRADO = 2
-
   def ver_estado(ticket)
-    if ticket.estado == NUEVO
+    if ticket.estado == Ticket::NUEVO
       "Nuevo"
-    elsif ticket.estado == ASIGNADO
+    elsif ticket.estado == Ticket::ASIGNADO
       "asignado a #{ticket.owner}" 
-    elsif ticket.estado == CERRADO
+    elsif ticket.estado == Ticket::CERRADO
       "CERRADO"
     end
   end

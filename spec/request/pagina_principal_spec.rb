@@ -34,7 +34,7 @@ describe "Comprobando la pagina principal" do
   it "Al picar en 'Ver tickets' me lleva al indice de todos los tickets" do
     visit '/'
     click_on('Ver tickets')
-    page.should have_css('title', :text=>'Listado de todos os tickets')
+    page.should have_css('title', :text=>'Listado de todos los tickets')
   end
   
   it "Al clickar en 'Buscador de tickets' me lleva a la pagina de busqueda" do

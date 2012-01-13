@@ -9,8 +9,8 @@
     No tienes tickets asignados
   <% else %>
     <br><br>
-    <strong>Tickets Asignados</strong>
-    <% @asignados.each do |asignado |%>      
+    <strong>Tickets Asignados</strong><br>
+    <% @asignados.each do |asignado|%>      
       Ticket id: <%= asignado.id %><br>
       Titulo: <%= asignado.titulo %><br>
       Ver ticket <%= link_to 'ir al ticket', ticket_path(asignado.id) %><br><br>
@@ -20,7 +20,7 @@
   <br><br> Usuario standar <br>
 <% end %><br><br>
 
-<strong> Tickets Creados </strong>
+<strong> Tickets Creados </strong><br>
 <% current_user.tickets.each do |ticket| %>
   Ticket creado - <strong> <%= ticket.titulo %> </strong>,  
   - <%= link_to 'Ver', ticket_path(ticket)%> <br>
