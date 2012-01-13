@@ -15,8 +15,11 @@ TicketSistem::Application.routes.draw do
   get "privacidad"=>"static_pages#privacidad", :as=>'static_pages_privacidad'
   
   resources :tickets do
-    get '/buscador', :on=> :collection
+    get '/buscador', :on=> :collection 
+    get 'asignar_estado', :on => :member 
   end
+  
+  
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"

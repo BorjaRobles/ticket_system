@@ -8,9 +8,9 @@ class TicketsController < ApplicationController
     #  @user = User.find(session[:user_id])
     #end
     if params[:tag_list].blank?
-      @encontrado = Ticket.buscar_titulo(params[:titulo]).paginate(:page => params[:page], :per_page => 2)
+      @tickets = Ticket.buscar_titulo(params[:titulo]).paginate(:page => params[:page], :per_page => 2)
     else
-      @encontrado = Ticket.tagged_with(params[:tag_list], :any => true).paginate(:page => params[:page], :per_page => 2)
+      @tickets = Ticket.tagged_with(params[:tag_list], :any => true).paginate(:page => params[:page], :per_page => 2)
     end
   end
   
@@ -24,12 +24,12 @@ class TicketsController < ApplicationController
        # @user = User.find(session[:user_id])
       #end
       if (params[:estado]==Ticket::TODOS)
-        @todos = Ticket.all.paginate(:page => params[:page], :per_page => 5)
+        @tickets = Ticket.all.paginate(:page => params[:page], :per_page => 5)
       else      
-        @todos = Ticket.where(:estado => params[:estado]).paginate(:page => params[:page], :per_page => 5)
+        @tickets = Ticket.where(:estado => params[:estado]).paginate(:page => params[:page], :per_page => 5)
       end
     else
-      @todos = Ticket.all.paginate(:page => params[:page], :per_page => 5)
+      @tickets = Ticket.all.paginate(:page => params[:page], :per_page => 5)
       #if session[:user_id] 
        # @user = User.find(session[:user_id])
       #end
@@ -43,7 +43,7 @@ class TicketsController < ApplicationController
       
   def show
     if @user
-        @elticket = Ticket.find(params[:id])
+        @ticket = Ticket.find(params[:id])
         #redirect_to ver_todos_url if @elticket.nil?
     else
       redirect_to tickets_url, :alert=>'Registrate antes!!'

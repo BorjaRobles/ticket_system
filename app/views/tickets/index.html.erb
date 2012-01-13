@@ -1,30 +1,30 @@
 <%= render 'filtro'%>
 
-<% @todos.each do |cadauno| %>
-  <%= div_for cadauno do %>
-    <td> #ID - <%= link_to cadauno.id, ticket_path(cadauno.id) %> </td> <br>
-    <td> <%= image_tag (cadauno.user.foto.url(:small)) %> </td></br>
-    <td> Usuario: <%= cadauno.user.name %> </td><br>
-    <td> Los tags - <%= cadauno.tag_list %> </td><br>
-    <td> <%= cadauno.titulo %> </td><br>
-    <td> <%= cadauno.contenido %> </td><br>
-    <td> Estado: <%= ver_estado(cadauno) %></td><br><br>
+<% @tickets.each do |ticket| %>
+  <%= div_for ticket do %>
+    <td> #ID - <%= link_to ticket.id, ticket_path(ticket.id) %> </td> <br>
+    <td> <%= image_tag (ticket.user.foto.url(:small)) %> </td></br>
+    <td> Usuario: <%= ticket.user.name %> </td><br>
+    <td> Los tags - <%= ticket.tag_list %> </td><br>
+    <td> <%= ticket.titulo %> </td><br>
+    <td> <%= ticket.contenido %> </td><br>
+    <td> Estado: <%= ver_estado(ticket) %></td><br><br>
     <% if session[:user_id] %>          
       <% if current_user.soporte == true %>      
-        <%= link_to "ASIGNAR", asignar_estado_path(cadauno.id,Ticket::ASIGNADO)%> 
-        - <%= link_to "CERRAR", asignar_estado_path(cadauno.id,Ticket::CERRADO)%>
+        <%= link_to "ASIGNAR", asignar_estado_ticket_path(ticket.id,Ticket::ASIGNADO)%> 
+        - <%= link_to "CERRAR", asignar_estado_ticket_path(ticket.id,Ticket::CERRADO)%>
       <% end %>
     <% end %>     
     
-    <% cadauno.comments.each do |comentario| %>
+    <% ticket.comments.each do |comentario| %>
       <strong><%= comentario.autor %></strong> Comento el <%= comentario.created_at %><br>
       <%= comentario.texto %><br>
     <% end %>
     
     <% if @user %>
     <br>
-      <%= form_for [@user,cadauno,@coment] do |f| %>
-        <div class="round" name="newboxes" id="<%=cadauno.id%>">
+      <%= form_for [@user,ticket,@coment] do |f| %>
+        <div class="round" name="newboxes" id="<%=ticket.id%>">
           <p>
             <%= f.label 'Comentario' %><br />
             <%= f.text_field :texto %>
@@ -43,7 +43,7 @@
   <p> Buscar un ticket <%= link_to "Buscador de tickets", buscador_tickets_url %></p></br>
 <% end %>
 
-<% if @todos.size == 0 %>
+<% if @tickets.size == 0 %>
   <em> No se han encontrado tickets </em>
 <% end %>
 
