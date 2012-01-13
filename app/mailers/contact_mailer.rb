@@ -12,8 +12,4 @@ class ContactMailer < ActionMailer::Base
     @name = name
     @texto = texto
   end
-  
-  #def admin_request(email)
-   # mail :to => email
-  #end
 end

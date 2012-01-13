@@ -1,8 +1,4 @@
 TicketSistem::Application.routes.draw do  
-  
-  #Esta ruta no se puede modificar con un member ??  
-  get "/tickets/:ticket_id/:estado" => "tickets#index", :as => "asignar_estado" 
-  
   resources :sessions, :comments
   
   resources :users do 
@@ -13,12 +9,11 @@ TicketSistem::Application.routes.draw do
 
   get "legalidad"=>"static_pages#legalidad", :as=>'static_pages_legalidad'
   get "privacidad"=>"static_pages#privacidad", :as=>'static_pages_privacidad'
+  get "/tickets/:ticket_id/:estado" => "tickets#index", :as => "asignar_estado" 
   
   resources :tickets do
-    get '/buscador', :on=> :collection 
-    get 'asignar_estado', :on => :member 
-  end
-  
+    get '/buscador', :on=> :collection
+  end  
   
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"

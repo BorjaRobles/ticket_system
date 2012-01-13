@@ -11,8 +11,8 @@
     <td> Estado: <%= ver_estado(ticket) %></td><br><br>
     <% if session[:user_id] %>          
       <% if current_user.soporte == true %>      
-        <%= link_to "ASIGNAR", asignar_estado_ticket_path(ticket.id,Ticket::ASIGNADO)%> 
-        - <%= link_to "CERRAR", asignar_estado_ticket_path(ticket.id,Ticket::CERRADO)%>
+        <%= link_to "ASIGNAR", asignar_estado_path(ticket.id,Ticket::ASIGNADO)%> 
+        - <%= link_to "CERRAR", asignar_estado_path(ticket.id,Ticket::CERRADO)%>
       <% end %>
     <% end %>     
     

@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :login_required, :only=>[:new,:create,:edit,:update, :destroy]
-  
-    
+      
   def new
     @comment = Comment.new
     @ticket = Ticket.find_by_id(params[:ticket_id])

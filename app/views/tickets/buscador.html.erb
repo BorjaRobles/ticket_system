@@ -10,8 +10,8 @@
       <td> <%= ticket.titulo %> </td><br>
       <td> <%= ticket.contenido %> </td><br>
       <td> Estado: <%= ver_estado(ticket) %></td><br>
-      <%= link_to "ASIGNAR", asignar_estado_ticket_path(ticket.id,Ticket::ASIGNADO)%> 
-      - <%= link_to "CERRAR", asignar_estado_ticket_path(ticket.id,Ticket::CERRADO)%><br>
+      <%= link_to "ASIGNAR", asignar_estado_path(ticket.id,Ticket::ASIGNADO)%> 
+      - <%= link_to "CERRAR", asignar_estado_path(ticket.id,Ticket::CERRADO)%><br>
       <td> <%= link_to "Comentar", new_user_ticket_comment_path(session[:user_id], ticket.id) %> </td><br>    
       <% if session[:user_id] == ticket.user_id %>        
         <td> <%= link_to "Actualizar", edit_user_ticket_path(@user, ticket)%>
