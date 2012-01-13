@@ -1,5 +1,5 @@
 <%= form_for @user, :html => { :multipart => true } do |f| %>
-  <%= render :partial => 'shared/error_list', :locals => {:error_list =>@user} if @user.errors.any?%>
+  <%= render :partial => 'shared/error_list', :locals => {:error_list =>@user}%>
   <p>
     <%= f.label 'Nombre de Usuario' %><br />
     <%= f.text_field :username %>

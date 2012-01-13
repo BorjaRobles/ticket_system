@@ -1,5 +1,5 @@
 <%= form_for [@user,@ticket] do |f| %>
-  <%= render :partial => 'shared/error_list', :locals => {:error_list => @ticket} if @ticket.errors.any?%>
+  <%= render :partial => 'shared/error_list', :locals => {:error_list => @ticket}%>
   <p>
     <%= f.label 'Titulo' %><br />
     <%= f.text_field :titulo %>
