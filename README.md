@@ -7,7 +7,7 @@ Implementadas las gemas will_paginate y acts-as-taggable-on
 
 
 
-UPDATES
+Updates
 -------
 
 Ahora los usuarios registrados pueden comentar los tickets
