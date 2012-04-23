@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :login_required, :only=>[:show, :edit, :update]
   before_filter :get_user, :only=>[:show, :edit, :update]
+  
   def new
     @titulo = 'Registrate'
     @user = User.new
